@@ -1,0 +1,56 @@
+Team Details
+Team Name: DARE_TO_TRAVEL
+MEMBER DETAILS:
+
+1.	NAME: 					Aryan Khandelwal
+REGISTRATION NO: 		20194142
+CONTACT NO:			9068805228
+EMAIL ID:				kr.aryan2307@gmail.com
+
+2.	NAME: 					Abhinav Anand
+REGISTRATION NO: 		20198049
+
+3.	NAME: 					Hardik Mittal
+REGISTRATION NO: 		20198080
+
+
+
+
+
+PROJECT 1:
+
+PROBLEM STATEMENT: LOCKDOWN TRAVELLER
+	FEATURES IMPLEMENTING:
+•	Sign up, login, logout page.
+•	Train visibility
+•	Showing availability of seats.
+•	Can give berth preference.
+•	Cancelling of bookings can also be done.
+•	Showing status of train to user
+•	Booking history of user.
+
+•	Database for storing our imagination trains.
+•	Another table for storing the user information we took from sign up page.
+•	Booking and sending of seats to user via mail.
+•	Maintain current seats in trains. 
+•	Add and remove trains. 
+•	Add and remove seats/Coaches in trains
+•	Cancel trains.
+
+
+ADVANCED FEATURES
+•	Discounts to frequent users of this app.
+•	Register complaints and reply by admin to the user.
+•	Notify of their journey via mail.
+•	Dynamic pricing on special trains.
+•	Cancel and reroute trains for a certain duration.
+•	Display the probable halting Platform No. of the trains at stations/junctions.
+•	Create tourist packages.
+•	Book meals during a journey.
+•	Tatkal, special and senior citizen quota for tickets.
+•	Female coach for those females who are travelling with no male above 15.
+•	Users get notification for offers and train cancellations or reroutes.
+
+TECH STACK: Java , SQL.
+Github Link: https://github.com/Ark2307/Dare_To_Travel.git
+
