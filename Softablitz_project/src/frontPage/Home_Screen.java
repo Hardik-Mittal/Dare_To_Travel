@@ -38,7 +38,7 @@ public class Home_Screen extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         username = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        railwatBtn = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
@@ -55,9 +55,9 @@ public class Home_Screen extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("BOOKINGS");
 
-        jButton1.setFont(new java.awt.Font("SEGA LOGO FONT", 0, 14)); // NOI18N
-        jButton1.setText("RAILWAYS");
-        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        railwatBtn.setFont(new java.awt.Font("SEGA LOGO FONT", 0, 14)); // NOI18N
+        railwatBtn.setText("RAILWAYS");
+        railwatBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jButton2.setFont(new java.awt.Font("SEGA LOGO FONT", 0, 14)); // NOI18N
         jButton2.setText("MEALS");
@@ -81,7 +81,7 @@ public class Home_Screen extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(178, 178, 178)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(railwatBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(0, 154, Short.MAX_VALUE))
@@ -98,7 +98,7 @@ public class Home_Screen extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(40, 40, 40)
-                .addComponent(jButton1)
+                .addComponent(railwatBtn)
                 .addGap(42, 42, 42)
                 .addComponent(jButton2)
                 .addGap(50, 50, 50)
@@ -162,11 +162,11 @@ public class Home_Screen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton railwatBtn;
     public javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 }
