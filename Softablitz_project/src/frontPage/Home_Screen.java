@@ -14,8 +14,16 @@ public class Home_Screen extends javax.swing.JFrame {
     /**
      * Creates new form Home_Screen
      */
+    String loguser;
     public Home_Screen() {
         initComponents();
+    }
+    
+    
+    public Home_Screen(String loggedinUser){
+        initComponents();
+        this.loguser = loggedinUser;
+        username.setText(loguser);
     }
 
     /**

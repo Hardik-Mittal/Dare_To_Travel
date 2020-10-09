@@ -219,11 +219,11 @@ public class login extends javax.swing.JFrame {
             
             if(rs.next()){
                 
-                Home_Screen hs = new Home_Screen();
+                Home_Screen hs = new Home_Screen(uname);
                 hs.setVisible(true);
                 hs.pack();
                 hs.setLocationRelativeTo(null);
-                hs.username.setText("Welcome < "+uname+ " >");
+//                hs.username.setText("Welcome < "+uname+ " >");
                 this.dispose();
             }
             else{
