@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3307
--- Generation Time: Oct 09, 2020 at 10:04 AM
+-- Generation Time: Oct 09, 2020 at 08:21 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `daretotravel`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_details`
+--
+
+CREATE TABLE `admin_details` (
+  `id` int(20) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin_details`
+--
+
+INSERT INTO `admin_details` (`id`, `name`, `username`, `password`) VALUES
+(1, 'daretotravel', 'daretotravel', 'helloworld'),
+(2, 'softablitz', 'softablitz', 'java');
 
 -- --------------------------------------------------------
 
@@ -58,6 +79,12 @@ INSERT INTO `user_details` (`id`, `firstname`, `lastname`, `username`, `password
 --
 
 --
+-- Indexes for table `admin_details`
+--
+ALTER TABLE `admin_details`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user_details`
 --
 ALTER TABLE `user_details`
@@ -66,6 +93,12 @@ ALTER TABLE `user_details`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `admin_details`
+--
+ALTER TABLE `admin_details`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user_details`
