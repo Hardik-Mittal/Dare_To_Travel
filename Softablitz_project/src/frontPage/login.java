@@ -218,10 +218,16 @@ public class login extends javax.swing.JFrame {
             rs = ps.executeQuery();
             
             if(rs.next()){
-                JOptionPane.showMessageDialog(null, "YES!");
+                
+                Home_Screen hs = new Home_Screen();
+                hs.setVisible(true);
+                hs.pack();
+                hs.setLocationRelativeTo(null);
+                hs.username.setText("Welcome < "+uname+ " >");
+                this.dispose();
             }
             else{
-                JOptionPane.showMessageDialog(null, "NO!");
+                JOptionPane.showMessageDialog(null, "Incorrect Username or Password", "Login Failed!", HEIGHT);
             }
             
         } catch (SQLException ex) {
@@ -251,6 +257,8 @@ public class login extends javax.swing.JFrame {
         nu.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    
+    
     /**
      * @param args the command line arguments
      */

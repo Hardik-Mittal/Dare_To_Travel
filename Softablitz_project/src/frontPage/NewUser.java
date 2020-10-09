@@ -9,6 +9,8 @@ package frontPage;
 //import java.sql.Connection;
 //import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
+import java.sql.ResultSet;
 import com.mysql.jdbc.Statement;
 //import java.beans.Statement;
 //import com.mysql.jdbc.Statement;
@@ -307,6 +309,12 @@ public class NewUser extends javax.swing.JFrame {
         else if (contact.equals("")) {
             JOptionPane.showMessageDialog(null, "Contact Field Empty!!");
         }
+        else if(checkUsername(username)){
+            JOptionPane.showMessageDialog(null, "this Username Already Exist");
+        }
+        else if(checkEmail(email)){
+            JOptionPane.showMessageDialog(null, "this Email Id Already Exist");
+        }
         else{
         try{
             Connection con = null;
@@ -369,6 +377,52 @@ public class NewUser extends javax.swing.JFrame {
         lg.setVisible(true);
     }//GEN-LAST:event_signinBtnActionPerformed
 
+    //function to check if the username already exists
+    public boolean checkUsername(String username){
+        PreparedStatement ps;
+        ResultSet rs;
+        boolean checkUser = false;
+        
+        String query = "SELECT * FROM `user_details` WHERE `username` =?";
+        try {
+            ps = (PreparedStatement) myConnection.getConnection().prepareStatement(query);
+            ps.setString(1, username);
+            
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+                checkUser = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return checkUser;
+    }
+    
+    public boolean checkEmail(String email){
+        PreparedStatement ps;
+        ResultSet rs;
+        boolean checkemail = false;
+        
+        String query = "SELECT * FROM `user_details` WHERE `email_id` =?";
+        try {
+            ps = (PreparedStatement) myConnection.getConnection().prepareStatement(query);
+            ps.setString(1, email);
+            
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+                checkemail = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return checkemail;
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
