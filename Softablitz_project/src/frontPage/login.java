@@ -9,6 +9,11 @@ package frontPage;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
+import static java.awt.image.ImageObserver.HEIGHT;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -22,12 +27,23 @@ import javax.swing.JOptionPane;
  */
 public class login extends javax.swing.JFrame {
 
+//    static String retuname() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//    public String uname;
+//    public String pass;
     /**
      * Creates new form login
      */
     public login() {
         initComponents();
     }
+//    public login(String uname, String pass) {
+//        this.uname = uname;
+//        this.pass = pass;
+//    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -201,38 +217,65 @@ public class login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+//    static String retuname(String uname) {
+//        return uname;
+//
+//    }
+//    static String retpass(String pass) {
+//        return pass;
+//
+//    }
+    
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // TODO add your handling code here:
-        PreparedStatement ps;
-        ResultSet rs;
-        String uname = txtUsername.getText();
-        String pass = String.valueOf(txtPassword.getPassword());
-        
-        String query = "SELECT * FROM `user_details` WHERE `username` =? AND `password` =?";
-        try {
-            ps = (PreparedStatement) myConnection.getConnection().prepareStatement(query);
+//        PreparedStatement ps;
+//        ResultSet rs;
+          String uname = txtUsername.getText();
+          String pass = String.valueOf(txtPassword.getPassword());
+         
+          try {
+            Socket socket = new Socket("localhost", 5436);
+//            BufferedReader bufferedReader = new BufferedReader
+//                    (new InputStreamReader(System.in));
+            System.out.println("Client created.");
+//            System.out.println("Enter name of client.");
+//            String uname, pass;
+//            login l = new login();
+//            uname = l.uname;
+//            pass = l.pass;
             
-            ps.setString(1, uname);
-            ps.setString(2, pass);
-            
-            rs = ps.executeQuery();
-            
-            if(rs.next()){
-                
-                Home_Screen hs = new Home_Screen(uname);
-                hs.setVisible(true);
-                hs.pack();
-                hs.setLocationRelativeTo(null);
-//                hs.username.setText("Welcome < "+uname+ " >");
-                this.dispose();
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Incorrect Username or Password", "Login Failed!", HEIGHT);
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+            new login().checkdb( uname, pass);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+          
+          
+          
+//        String query = "SELECT * FROM `user_details` WHERE `username` =? AND `password` =?";
+//        try {
+//            ps = (PreparedStatement) myConnection.getConnection().prepareStatement(query);
+//            
+//            ps.setString(1, uname);
+//            ps.setString(2, pass);
+//            
+//            rs = ps.executeQuery();
+//            
+//            if(rs.next()){
+//                
+//                Home_Screen hs = new Home_Screen(uname);
+//                hs.setVisible(true);
+//                hs.pack();
+//                hs.setLocationRelativeTo(null);
+////                hs.username.setText("Welcome < "+uname+ " >");
+//                this.dispose();
+//            }
+//            else{
+//                JOptionPane.showMessageDialog(null, "Incorrect Username or Password", "Login Failed!", HEIGHT);
+//            }
+//            
+//        } catch (SQLException ex) {
+//            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         
     }//GEN-LAST:event_loginActionPerformed
 
@@ -256,6 +299,44 @@ public class login extends javax.swing.JFrame {
         nu.setLocationRelativeTo(null);
         nu.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    
+     public void checkdb
+            (String uname1, String pass1)
+            throws IOException {
+//        ObjectOutputStream objectOutputStream =
+//                new ObjectOutputStream(socket.getOutputStream());
+        PreparedStatement ps;
+        ResultSet rs;
+        
+        String query = "SELECT * FROM `user_details` WHERE `username` =? AND `password` =?";
+        try {
+            ps = (PreparedStatement) myConnection.getConnection().prepareStatement(query);
+            
+            ps.setString(1, uname1);
+            ps.setString(2, pass1);
+            
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+                
+                Home_Screen hs = new Home_Screen(uname1);
+                hs.setVisible(true);
+                hs.pack();
+                hs.setLocationRelativeTo(null);
+//                hs.username.setText("Welcome < "+uname+ " >");
+                this.dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Incorrect Username or Password", "Login Failed!", HEIGHT);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
+    }
 
     
     
