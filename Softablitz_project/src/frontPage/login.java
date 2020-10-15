@@ -217,10 +217,10 @@ public class login extends javax.swing.JFrame {
          
           try {
             Socket socket = new Socket("localhost", 5436);
-            System.out.println("Client created.");
+            
 
             
-            new login().checkdb( uname, pass);
+            new Server().checkdb( uname, pass);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -251,42 +251,6 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     
-     public void checkdb
-            (String uname1, String pass1)
-            throws IOException {
-//        ObjectOutputStream objectOutputStream =
-//                new ObjectOutputStream(socket.getOutputStream());
-        PreparedStatement ps;
-        ResultSet rs;
-        
-        String query = "SELECT * FROM `user_details` WHERE `username` =? AND `password` =?";
-        try {
-            ps = (PreparedStatement) myConnection.getConnection().prepareStatement(query);
-            
-            ps.setString(1, uname1);
-            ps.setString(2, pass1);
-            
-            rs = ps.executeQuery();
-            
-            if(rs.next()){
-                
-                Home_Screen hs = new Home_Screen(uname1);
-                hs.setVisible(true);
-                hs.pack();
-                hs.setLocationRelativeTo(null);
-//                hs.username.setText("Welcome < "+uname+ " >");
-                this.dispose();
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Incorrect Username or Password", "Login Failed!", HEIGHT);
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        
-    }
 
     
     
