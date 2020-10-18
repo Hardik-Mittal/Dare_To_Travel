@@ -9,13 +9,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
-public class handleLogin implements Runnable {
+public class handleAdmin implements Runnable {
     private Socket socket;
     ObjectInputStream objectInputStream;
 
     
     
-    public handleLogin(Socket socket) {
+    public handleAdmin(Socket socket) {
         this.socket = socket;
         try {
               System.out.print(this);
@@ -34,7 +34,7 @@ public class handleLogin implements Runnable {
                 System.out.println("User received");
                 System.out.println(l);
             } catch (Exception e) {
-                System.out.println("Client Disconnected");
+//                System.out.println("Client Disconnected");
 //                e.printStackTrace();
                 return;
             }

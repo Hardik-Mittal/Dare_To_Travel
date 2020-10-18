@@ -12,6 +12,8 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import java.sql.ResultSet;
 import com.mysql.jdbc.Statement;
+import java.io.IOException;
+import java.net.Socket;
 //import java.beans.Statement;
 //import com.mysql.jdbc.Statement;
 import java.sql.DriverManager;
@@ -265,7 +267,7 @@ public class NewUser extends javax.swing.JFrame {
 
     
     
-    public void infoMessage(String message, String tittle){
+    public static void infoMessage(String message, String tittle){
         JOptionPane.showMessageDialog(null, message, tittle, JOptionPane.INFORMATION_MESSAGE);
     }
     
@@ -316,32 +318,16 @@ public class NewUser extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "this Email Id Already Exist");
         }
         else{
-        try{
-            Connection con = null;
-            Class.forName("com.mysql.jdbc.Driver");
-            
-            String databaseUrl = "jdbc:mysql://localhost:3307/daretotravel";
             try {
-              con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
-            } catch (SQLException ex) {
-                Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            String insertQuery = "insert into user_details values(null,'"+firstname+"','"+lastname+"','"+username+"','"+password+"','"+email+"','"+contact+"','"+passwordck+"','"+gender+"')";
+            Socket socket = new Socket("localhost", 5436);
+            Server s = new Server();
+            s.newuserreg(firstname, lastname, username, password, email, contact, passwordck, gender);
             
-            Statement stat = (Statement) con.createStatement();
-            int x = stat.executeUpdate(insertQuery);
-            System.out.print(x);
-            
-            if(x==1){
-                infoMessage("Registered Successfully!", "Alert");
+            } catch (IOException e) {
+                  System.out.println("Client "+firstname +" Disconnected!");
+//                e.printStackTrace();
             }
             
-        }
-        catch(ClassNotFoundException e){
-            System.out.println(e);
-        } catch (SQLException ex) {
-            Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
-        }
         }
     }//GEN-LAST:event_registerBtnActionPerformed
 

@@ -7,6 +7,8 @@ package frontPage;
 
 import com.mysql.jdbc.PreparedStatement;
 import static java.awt.image.ImageObserver.HEIGHT;
+import java.io.IOException;
+import java.net.Socket;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -161,36 +163,25 @@ public class AdminLogin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-         PreparedStatement ps;
-        ResultSet rs;
+
         String uname = adminuserTF.getText();
         String pass = String.valueOf(adminpassPF.getPassword());
         
-        String query = "SELECT * FROM `admin_details` WHERE `username` =? AND `password` =?";
-        try {
-            ps = (PreparedStatement) myConnection.getConnection().prepareStatement(query);
-            
-            ps.setString(1, uname);
-            ps.setString(2, pass);
-            
-            rs = ps.executeQuery();
-            
-            if(rs.next()){
+
+
+            try{
+                Socket socket = new Socket("localhost", 5436);
                 
-                AdminControl ac = new AdminControl(uname);
-                ac.setVisible(true);
-                ac.pack();
-                ac.setLocationRelativeTo(null);
-//                hs.username.setText("Welcome < "+uname+ " >");
-                this.dispose();
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Incorrect Username or Password", "Login Failed!", HEIGHT);
+                Server s = new Server();
+                s.checkdbadmindlogin( uname, pass);
+                if(Server.checkl){
+                    this.dispose();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+//                  System.out.println("Admin "+uname+" Disconnected!");
             }
             
-        } catch (SQLException ex) {
-            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

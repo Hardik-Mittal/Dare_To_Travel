@@ -5,34 +5,38 @@
  */
 package frontPage;
 
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
-public class handleLogin implements Runnable {
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.net.Socket;
+
+public class handleNewUser implements Runnable {
     private Socket socket;
     ObjectInputStream objectInputStream;
 
     
     
-    public handleLogin(Socket socket) {
+    public handleNewUser(Socket socket) {
         this.socket = socket;
-        try {
-              System.out.print(this);
-              objectInputStream = new ObjectInputStream(socket.getInputStream());
-        } catch (IOException e) {
+        System.out.println(this);
+//        try {
+//            objectInputStream = new ObjectInputStream(socket.getInputStream());
+//        } catch (IOException e) {
 //            e.printStackTrace();
-//              System.out.println("Client Disconnected");
-        }
+//        }
     }
 
     @Override
     public void run() {
         while (true) {
             try {
-                login l = (login) objectInputStream.readObject();
+                NewUser nu = (NewUser) objectInputStream.readObject();
                 System.out.println("User received");
-                System.out.println(l);
+                System.out.println(nu);
             } catch (Exception e) {
                 System.out.println("Client Disconnected");
 //                e.printStackTrace();

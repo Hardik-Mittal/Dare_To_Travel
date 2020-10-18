@@ -219,11 +219,15 @@ public class login extends javax.swing.JFrame {
             Socket socket = new Socket("localhost", 5436);
             
 
-            
-            new Server().checkdb( uname, pass);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            Server s = new Server();
+            s.checkdblogin( uname, pass);
+            if(Server.checkl){
+                this.dispose();
+            }
+            } catch (IOException e) {
+                e.printStackTrace();
+//                  System.out.println("Client "+uname+" Disconnected!");
+            }
           
        
         
