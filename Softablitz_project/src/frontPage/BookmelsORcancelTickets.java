@@ -139,7 +139,7 @@ public class BookmelsORcancelTickets extends javax.swing.JFrame {
                         upd1 = nseats + Integer.parseInt(avl_ac_II_seats);
                     }
                     else{
-                        upd1 = Integer.parseInt(avl_sleeper_seats);
+                        upd1 = Integer.parseInt(avl_ac_II_seats);
                     }
                     
                     if(coach.toLowerCase().contains("ac")){
@@ -182,7 +182,7 @@ public class BookmelsORcancelTickets extends javax.swing.JFrame {
                         wstat = 0;
                         String idin = rs2.getString(2);
                         System.out.println("idin "+idin);
-                        String insertQuery4 = "UPDATE `booking_details` SET `ticket_status` = '"+tstatus+"', `waiting_status` = '"+wstat+"' WHERE `train_no` = '" + train_no + "' AND `id` = '"+ idin +"' AND `train_coach` = '"+coach+"' AND `sno` <> '"+sno+"' AND `user_booked` = '"+uname+"' AND `sno` = '"+snum+"'";
+                        String insertQuery4 = "UPDATE `booking_details` SET `ticket_status` = '"+tstatus+"', `waiting_status` = '"+wstat+"' WHERE `train_no` = '" + train_no + "' AND `id` = '"+ idin +"' AND `train_coach` = '"+coach+"' AND `sno` <> '"+sno+"' AND `sno` = '"+snum+"'";
                 
                         Statement stat4 = (Statement) con.createStatement();
                         a = stat4.executeUpdate(insertQuery4);
@@ -192,7 +192,7 @@ public class BookmelsORcancelTickets extends javax.swing.JFrame {
                     String idout = rs2.getString(2);
                     System.out.println("idout "+idout);
                     tstatus = "waiting";
-                    String insertQuery3 = "UPDATE `booking_details` SET `ticket_status` = '"+tstatus+"', `waiting_status` = '"+wstat+"' WHERE `train_no` = '" + train_no + "' AND `id` = '"+ idout +"' AND `train_coach` = '"+coach+"' AND `user_booked` = '"+uname+"' AND `sno` = '"+snum+"'";
+                    String insertQuery3 = "UPDATE `booking_details` SET `ticket_status` = '"+tstatus+"', `waiting_status` = '"+wstat+"' WHERE `train_no` = '" + train_no + "' AND `id` = '"+ idout +"' AND `train_coach` = '"+coach+"' AND `sno` = '"+snum+"'";
                 
                     Statement stat3 = (Statement) con.createStatement();
                     z = stat3.executeUpdate(insertQuery3);
@@ -230,6 +230,116 @@ public class BookmelsORcancelTickets extends javax.swing.JFrame {
             }
         }
         else if(tstatus.equals("waiting")){
+            
+            tstatus = "cancelled";
+            try{
+                Connection con = null;
+                Class.forName("com.mysql.jdbc.Driver");
+
+                String databaseUrl = "jdbc:mysql://localhost:3307/daretotravel";
+                try {
+                  con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
+                } catch (SQLException ex) {
+                    Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                int upd1 = 0, upd2 = 0, x=0;
+
+                String sql = "SELECT * FROM `train_details` WHERE `id` = ?";
+                PreparedStatement st = (PreparedStatement) con.prepareStatement(sql);
+                st.setInt(1, id);
+                ResultSet rs = st.executeQuery();
+                if (rs.next()) {
+                    String avl_ac_II_seats = rs.getString(14);
+                    String avl_sleeper_seats = rs.getString(15); 
+                    
+                    
+                    if(coach.toLowerCase().contains("ac")){
+                        upd1 = nseats + Integer.parseInt(avl_ac_II_seats);
+                    }
+                    else{
+                        upd1 = Integer.parseInt(avl_ac_II_seats);
+                    }
+                    
+                    if(coach.toLowerCase().contains("ac")){
+                        upd2 = Integer.parseInt(avl_sleeper_seats);
+                    }
+                    else{
+                        upd2 = nseats + Integer.parseInt(avl_sleeper_seats);
+                    }
+                    
+                    System.out.println("ac "+upd1);
+                    System.out.println("sleeper "+upd2);
+                    String insertQuery = "UPDATE `train_details` SET `avl_acII_seats` = '"+upd1+"',`avl_sleeper_seats` = '"+upd2+"' WHERE `train_no` = '" + train_no + "' AND `id` = '"+ id +"'";
+                
+                    Statement stat = (Statement) con.createStatement();
+                    x = stat.executeUpdate(insertQuery);
+                }
+                int a=0;
+
+                
+                String insertQuery2 = "UPDATE `booking_details` SET `ticket_status` = '"+tstatus+"' WHERE `train_no` = '" + train_no + "' AND `id` = '"+ id +"' AND `sno` = '"+sno+"' ";
+                
+                Statement stat2 = (Statement) con.createStatement();
+                int y = stat2.executeUpdate(insertQuery2);
+                
+                String sql2 = "SELECT * FROM `booking_details` WHERE `id` = '"+id+"' ";
+                PreparedStatement st2 = (PreparedStatement) con.prepareStatement(sql2);
+//                st2.setInt(2, id);
+                ResultSet rs2 = st2.executeQuery();
+                while(rs2.next()) {
+                    String wait_status = rs2.getString(19);
+                    int wstat = Integer.parseInt(wait_status);
+                    System.out.println("wstat "+wstat);
+                    String snum = rs2.getString(1);
+                    
+                    if(wstat<wstatus){
+                        tstatus = "waiting";
+                        wstat = nseats + Integer.parseInt(wait_status);
+                        if(wstat >=0){
+                            tstatus = "confirmed";
+                        }
+                        String idin = rs2.getString(2);
+                        System.out.println("idin "+idin);
+                        String insertQuery4 = "UPDATE `booking_details` SET `ticket_status` = '"+tstatus+"', `waiting_status` = '"+wstat+"' WHERE `train_no` = '" + train_no + "' AND `id` = '"+ idin +"' AND `train_coach` = '"+coach+"' AND `sno` <> '"+sno+"' AND `sno` = '"+snum+"'";
+                
+                        Statement stat4 = (Statement) con.createStatement();
+                        a = stat4.executeUpdate(insertQuery4);
+                    }
+                   
+                }
+                
+                
+//                Statement stat1 = (Statement) con.createStatement();
+//                Statement stat2 = (Statement) con.createStatement();
+//                int x = stat1.executeUpdate(insertQuery1);
+//                int y = stat2.executeUpdate(insertQueryS);
+//                System.out.print(x);
+//                System.out.print(y);
+//
+                if(x==1){
+                    NewUser.infoMessage(" x Cancelled Successfully!", "Alert");
+                    
+                }
+                if(y==1){
+                    NewUser.infoMessage(" y Cancelled Successfully!", "Alert");
+                    
+                }
+//                if(z==1){
+//                    NewUser.infoMessage(" z Cancelled Successfully!", "Alert");
+//                    
+//                }
+                if(a==1){
+                    NewUser.infoMessage(" a Cancelled Successfully!", "Alert");
+                    
+                }
+                
+            }
+
+            catch(ClassNotFoundException | SQLException e){
+                System.out.println(e);
+            }
+            
             
         }  
     }//GEN-LAST:event_jButton2ActionPerformed
