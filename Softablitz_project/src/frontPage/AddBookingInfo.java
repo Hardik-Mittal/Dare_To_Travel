@@ -5,6 +5,21 @@
  */
 package frontPage;
 
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.Statement;
+import static java.awt.image.ImageObserver.HEIGHT;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.TableModel;
+import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author ABHINAV ANAND
@@ -14,10 +29,68 @@ public class AddBookingInfo extends javax.swing.JInternalFrame {
     /**
      * Creates new form AddBookingInfo
      */
-    public AddBookingInfo() {
+    String uname;
+    public AddBookingInfo(String uname) {
+        this.uname = uname;
         initComponents();
+        sourceCBFillData();
+        destCBFillData();
     }
 
+     public void sourceCBFillData(){
+        try{
+            Connection con = null;
+                Class.forName("com.mysql.jdbc.Driver");
+
+                String databaseUrl = "jdbc:mysql://localhost:3307/daretotravel";
+                try {
+                  con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
+                } catch (SQLException ex) {
+                    Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                Statement stat = (Statement) con.createStatement();
+                String selectQuery = "select distinct train_source from train_details";
+                ResultSet rs = stat.executeQuery(selectQuery);
+                
+                while(rs.next()){
+                   source.addItem(rs.getString("train_source"));
+                    
+                }
+
+        }
+        catch(ClassNotFoundException | SQLException e){
+            System.out.println(e);
+        }
+    }
+    
+    public void destCBFillData(){
+        try{
+            Connection con = null;
+                Class.forName("com.mysql.jdbc.Driver");
+
+                String databaseUrl = "jdbc:mysql://localhost:3307/daretotravel";
+                try {
+                  con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
+                } catch (SQLException ex) {
+                    Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                Statement stat = (Statement) con.createStatement();
+                String selectQuery = "select distinct train_dest from train_details";
+                ResultSet rs = stat.executeQuery(selectQuery);
+                
+                while(rs.next()){
+                   dest.addItem(rs.getString("train_dest"));
+                    
+                }
+
+        }
+        catch(ClassNotFoundException | SQLException e){
+            System.out.println(e);
+        }
+    } 
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,6 +115,11 @@ public class AddBookingInfo extends javax.swing.JInternalFrame {
         search = new javax.swing.JButton();
         dest = new javax.swing.JComboBox<>();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+
         jLabel1.setText("Add Booking info");
 
         jLabel2.setText("Source");
@@ -61,6 +139,11 @@ public class AddBookingInfo extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -81,6 +164,11 @@ public class AddBookingInfo extends javax.swing.JInternalFrame {
         jLabel6.setText("Booking Details");
 
         search.setText("Search");
+        search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,6 +242,86 @@ public class AddBookingInfo extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
+        // TODO add your handling code here:
+        String tsource = (String) source.getSelectedItem();
+        String tdest = (String) dest.getSelectedItem();
+        Date tdateD = (Date) date.getDate();
+        SimpleDateFormat oDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String tdate = oDateFormat.format(tdateD);
+        if(String.valueOf(tdate) == ""){
+            JOptionPane.showMessageDialog(null, "Select a Date", "Date!", HEIGHT);
+        }
+        else{
+        try{
+            Connection con = null;
+            Class.forName("com.mysql.jdbc.Driver");
+
+            String databaseUrl = "jdbc:mysql://localhost:3307/daretotravel";
+            try {
+            con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
+            } catch (SQLException ex) {
+                Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            Statement stat = (Statement) con.createStatement();
+            String selectQuery = "SELECT * FROM `train_details` WHERE `train_source` ='"+tsource+"' AND `train_dest` ='"+tdest+"' AND `train_date` ='"+tdate+"'";
+            ResultSet rs = stat.executeQuery(selectQuery);
+            
+            Statement stat2 = (Statement) con.createStatement();
+            String selectQuery2 = "SELECT * FROM `booking_details` WHERE `user_booked` ='"+uname+"'";
+            ResultSet rs2 = stat2.executeQuery(selectQuery2);
+//            while(rs.next()){
+//                
+//                   dest.addItem(rs.getString("train_dest"));
+//                   if
+//                    
+//                }
+            
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+            
+            jTable2.setModel(DbUtils.resultSetToTableModel(rs2));
+            jTable2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        }
+    }//GEN-LAST:event_searchActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        int index = jTable1.getSelectedRow();
+        TableModel model = jTable1.getModel();
+        int id = Integer.parseInt(model.getValueAt(index, 0).toString());
+        String train_name = (String) model.getValueAt(index, 2);
+        int train_no = Integer.parseInt(model.getValueAt(index, 1).toString());
+        String train_source = (String) model.getValueAt(index, 3);
+        String train_dest = (String) model.getValueAt(index, 4);
+        String train_route = (String) model.getValueAt(index, 5);
+        int ac_II_S = Integer.parseInt(model.getValueAt(index, 8).toString());
+        int ac_II_P = Integer.parseInt(model.getValueAt(index, 9).toString());
+        int sleeper_S = Integer.parseInt(model.getValueAt(index, 10).toString());
+        int sleeper_P = Integer.parseInt(model.getValueAt(index, 11).toString());
+        
+        String departTime = (String) model.getValueAt(index, 6);
+        String status = (String) model.getValueAt(index, 7);
+        Date train_date = (Date) model.getValueAt(index, 12);
+        
+        int avl_ac_II_S = Integer.parseInt(model.getValueAt(index, 13).toString());
+        int avl_sleeper_S = Integer.parseInt(model.getValueAt(index, 14).toString());
+        
+        BookForm bof = new BookForm(id, train_no, train_name, train_source, train_dest, train_route, ac_II_S, ac_II_P, sleeper_S, sleeper_P, departTime, status, train_date, uname, avl_ac_II_S, avl_sleeper_S);
+        bof.setVisible(true);
+        bof.pack();
+//        bof.
+        
+//         JOptionPane.showMessageDialog(null, "Clicked", "Clicked!", HEIGHT);
+        
+    }//GEN-LAST:event_jTable1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

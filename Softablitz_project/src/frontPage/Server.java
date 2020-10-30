@@ -140,6 +140,7 @@ public class Server {
             
             if(rs.next()){
                 System.out.println("Admin "+uname1+" active now");
+//                BookForm bof = new BookForm(uname1);
                 AdminControl ac = new AdminControl(uname1);
                 ac.setVisible(true);
                 ac.pack();

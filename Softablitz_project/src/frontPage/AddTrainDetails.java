@@ -357,13 +357,17 @@ public class AddTrainDetails extends javax.swing.JInternalFrame {
                 } catch (SQLException ex) {
                     Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                String insertQuery = "insert into train_details values(null,'"+train_no+"','"+train_name+"','"+train_source+"','"+train_dest+"','"+train_route+"','"+departTime+"','"+status+"','"+ac_II_S+"','"+ac_II_P+"','"+sleeper_S+"','"+sleeper_P+"')";
-
-                Statement stat = (Statement) con.createStatement();
-                int x = stat.executeUpdate(insertQuery);
+                String insertQuery1 = "insert into train_details values(null,'"+train_no+"','"+train_name+"','"+train_source+"','"+train_dest+"','"+train_route+"','"+departTime+"','"+status+"','"+ac_II_S+"','"+ac_II_P+"','"+sleeper_S+"','"+sleeper_P+"',null,'"+ac_II_S+"', '"+sleeper_S+"')";
+                
+//                String insertQuery2 = "insert into train_details (avl_acII_seats, avl_sleeper_seats) values ('"+ac_II_S+"', '"+sleeper_S+"')";
+                
+                Statement stat1 = (Statement) con.createStatement();
+//                Statement stat2 = (Statement) con.createStatement();
+                int x = stat1.executeUpdate(insertQuery1);
+//                int y = stat2.executeUpdate(insertQuery2);
                 System.out.print(x);
 
-                if(x==1){
+                if(x==1 ){
                     NewUser.infoMessage("Added Successfully!", "Alert");
                     clearFields();
                 }

@@ -50,8 +50,9 @@ public class AdminControl extends javax.swing.JFrame {
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenuItem20 = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
+        addbooking = new javax.swing.JMenu();
         jMenuItem15 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
@@ -161,12 +162,30 @@ public class AdminControl extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
-        jMenu6.setText("Booking");
+        addbooking.setText("Booking");
+        addbooking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addbookingActionPerformed(evt);
+            }
+        });
 
         jMenuItem15.setText("Booking Details");
-        jMenu6.add(jMenuItem15);
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        addbooking.add(jMenuItem15);
 
-        jMenuBar1.add(jMenu6);
+        jMenuItem2.setText("Add Booking");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        addbooking.add(jMenuItem2);
+
+        jMenuBar1.add(addbooking);
 
         jMenu3.setText("Manage_Admin");
 
@@ -275,6 +294,25 @@ public class AdminControl extends javax.swing.JFrame {
         atd.show();
     }//GEN-LAST:event_tdateActionPerformed
 
+    private void addbookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addbookingActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_addbookingActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        // TODO add your handling code here:
+        BookingDetails bd = new BookingDetails(user);
+        pane.add(bd);
+        bd.show();
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        AddBookingInfo abi = new AddBookingInfo(user);
+        pane.add(abi);
+        abi.show();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -311,11 +349,11 @@ public class AdminControl extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu addbooking;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem11;
@@ -326,6 +364,7 @@ public class AdminControl extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
