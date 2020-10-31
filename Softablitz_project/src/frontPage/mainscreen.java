@@ -114,14 +114,14 @@ public class mainscreen extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        login ul = new login();
+        login1 ul = new login1();
         this.hide();
         ul.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        AdminLogin al = new AdminLogin();
+        AdminLogin1 al = new AdminLogin1();
         this.hide();
         al.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed

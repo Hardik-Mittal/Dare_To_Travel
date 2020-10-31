@@ -53,6 +53,7 @@ public class AdminControl extends javax.swing.JFrame {
         addbooking = new javax.swing.JMenu();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
@@ -93,6 +94,11 @@ public class AdminControl extends javax.swing.JFrame {
 
         jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem6.setText("Edit Train Details");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem6);
 
         jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_MASK));
@@ -185,6 +191,14 @@ public class AdminControl extends javax.swing.JFrame {
         });
         addbooking.add(jMenuItem2);
 
+        jMenuItem1.setText("All Bookings");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        addbooking.add(jMenuItem1);
+
         jMenuBar1.add(addbooking);
 
         jMenu3.setText("Manage_Admin");
@@ -197,9 +211,14 @@ public class AdminControl extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu7.setText("Report");
+        jMenu7.setText("logout");
 
-        jMenuItem18.setText("Between Dates");
+        jMenuItem18.setText("sign out");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
         jMenu7.add(jMenuItem18);
 
         jMenuBar1.add(jMenu7);
@@ -214,7 +233,7 @@ public class AdminControl extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 576, Short.MAX_VALUE)
+                        .addGap(0, 616, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(pane))
                 .addContainerGap())
@@ -254,7 +273,7 @@ public class AdminControl extends javax.swing.JFrame {
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
 
-        AllTrainDetails atd = new AllTrainDetails();
+        AllTrainDetails atd = new AllTrainDetails(user);
         pane.add(atd);
         atd.show();
     }//GEN-LAST:event_jMenuItem8ActionPerformed
@@ -313,6 +332,27 @@ public class AdminControl extends javax.swing.JFrame {
         abi.show();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        AllBookingDetails abd = new AllBookingDetails(user);
+        pane.add(abd);
+        abd.show();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        // TODO add your handling code here:
+        login1 l = new login1();
+        l.setLocationRelativeTo(null);
+        l.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -356,6 +396,7 @@ public class AdminControl extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;

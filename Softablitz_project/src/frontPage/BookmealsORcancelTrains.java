@@ -117,7 +117,7 @@ public class BookmealsORcancelTrains extends javax.swing.JInternalFrame {
                 try {
                   con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
                 } catch (SQLException ex) {
-                    Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
 //                Statement stat = (Statement) con.createStatement();

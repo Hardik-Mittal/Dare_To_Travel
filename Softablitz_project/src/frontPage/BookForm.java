@@ -59,6 +59,8 @@ public class BookForm extends javax.swing.JFrame {
         jLabel19.setText(time);
         jLabel20.setText(status);
         jLabel24.setText(String.valueOf(date));
+        jLabel21.setText(String.valueOf(avl_ac_II_S));
+        jLabel26.setText(String.valueOf(avl_sleeper_S));
     }
 
 //    String loguser;
@@ -104,6 +106,10 @@ public class BookForm extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BookForm");
@@ -163,13 +169,28 @@ public class BookForm extends javax.swing.JFrame {
 
         jLabel13.setText("Time");
 
+        jLabel15.setText("Avl AC Seats");
+
+        jLabel21.setText("jLabel21");
+
+        jLabel25.setText("Avl Sleeper Seats");
+
+        jLabel26.setText("jLabel26");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(157, 157, 157)
+                .addComponent(book)
+                .addGap(142, 142, 142)
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel15)
                     .addComponent(jLabel6)
                     .addComponent(jLabel5)
                     .addComponent(jLabel4)
@@ -177,21 +198,25 @@ public class BookForm extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel1)
                     .addComponent(jLabel22))
-                .addGap(95, 95, 95)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(147, 147, 147)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel21)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel25))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel17))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel16))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel7)
                             .addComponent(jLabel8)
@@ -200,25 +225,24 @@ public class BookForm extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel13)
                             .addComponent(jLabel14)))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(coach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel23)))
                 .addGap(92, 92, 92)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(fname, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lname)
-                    .addComponent(nseat))
-                .addGap(37, 37, 37))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(155, 155, 155)
-                .addComponent(book)
-                .addGap(157, 157, 157)
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(fname, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lname)
+                            .addComponent(nseat))
+                        .addGap(37, 37, 37))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel26)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,9 +289,15 @@ public class BookForm extends javax.swing.JFrame {
                     .addComponent(jLabel24))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel21)
+                    .addComponent(jLabel25)
+                    .addComponent(jLabel26))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(book)
                     .addComponent(jButton2))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addGap(56, 56, 56))
         );
 
         pack();
@@ -282,12 +312,15 @@ public class BookForm extends javax.swing.JFrame {
         String cCoach = (String) coach.getSelectedItem();
         String tstatus;
         String meal_status = "";
+        String meal_dest = "";
         int wstatus;
         
 //        String user = "user";
         
         int pay = Integer.parseInt(seats) * (cCoach.toLowerCase().contains("ac")?ac_II_P:sleeper_P);
         
+        
+           
         if(cCoach.toLowerCase().contains("ac")){
             avl_ac_II_S = avl_ac_II_S  - Integer.parseInt(seats);
             System.out.println("acII seats"+avl_ac_II_S);
@@ -332,9 +365,9 @@ public class BookForm extends javax.swing.JFrame {
                 try {
                   con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
                 } catch (SQLException ex) {
-                    Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                String insertQuery1 = "insert into booking_details values(null,'"+id+"','"+train_no+"','"+train_name+"','"+source+"','"+dest+"','"+route+"','"+cCoach+"','"+time+"','"+status+"','"+fName+"','"+lName+"','"+seats+"','"+date+"','"+uname+"','"+pay+"', '"+tstatus+"', '"+meal_status+"', '"+wstatus+"')";
+                String insertQuery1 = "insert into booking_details values(null,'"+id+"','"+train_no+"','"+train_name+"','"+source+"','"+dest+"','"+route+"','"+cCoach+"','"+time+"','"+status+"','"+fName+"','"+lName+"','"+seats+"','"+date+"','"+uname+"','"+pay+"', '"+tstatus+"', '"+meal_status+"', '"+meal_dest+"', '"+wstatus+"')";
                 String insertQueryS = "UPDATE `train_details` SET `avl_acII_seats` = '"+avl_ac_II_S+"',`avl_sleeper_seats` = '"+avl_sleeper_S+"' WHERE `train_no` = '"+train_no+"' AND `id` = '"+ id +"'";
                 
                 
@@ -348,7 +381,7 @@ public class BookForm extends javax.swing.JFrame {
                 System.out.print(y);
 
                 if(x==1&&y==1){
-                    NewUser.infoMessage("Added Successfully!", "Alert");
+                    NewUser1.infoMessage("Added Successfully!", "Alert");
                     
                 }
 
@@ -405,15 +438,19 @@ public class BookForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

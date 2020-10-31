@@ -82,7 +82,7 @@ public class Server {
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(login1.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         
@@ -101,7 +101,7 @@ public class Server {
             try {
               con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
             } catch (SQLException ex) {
-                Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
             }
             String insertQuery = "insert into user_details values(null,'"+firstname+"','"+lastname+"','"+username+"','"+password+"','"+email+"','"+contact+"','"+passwordck+"','"+gender+"')";
             
@@ -110,14 +110,14 @@ public class Server {
             System.out.print(x);
             
             if(x==1){
-                NewUser.infoMessage("Registered Successfully!", "Alert");
+                NewUser1.infoMessage("Registered Successfully!", "Alert");
             }
             
         }
         catch(ClassNotFoundException e){
             System.out.println(e);
         } catch (SQLException ex) {
-            Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
         }
         
      }
@@ -154,7 +154,7 @@ public class Server {
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(login1.class.getName()).log(Level.SEVERE, null, ex);
         }
                 
      }

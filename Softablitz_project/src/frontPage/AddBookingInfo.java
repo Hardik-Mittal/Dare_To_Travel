@@ -46,7 +46,7 @@ public class AddBookingInfo extends javax.swing.JInternalFrame {
                 try {
                   con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
                 } catch (SQLException ex) {
-                    Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
                 Statement stat = (Statement) con.createStatement();
@@ -73,7 +73,7 @@ public class AddBookingInfo extends javax.swing.JInternalFrame {
                 try {
                   con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
                 } catch (SQLException ex) {
-                    Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
                 Statement stat = (Statement) con.createStatement();
@@ -262,7 +262,7 @@ public class AddBookingInfo extends javax.swing.JInternalFrame {
             try {
             con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
             } catch (SQLException ex) {
-                Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             Statement stat = (Statement) con.createStatement();
@@ -314,9 +314,15 @@ public class AddBookingInfo extends javax.swing.JInternalFrame {
         int avl_ac_II_S = Integer.parseInt(model.getValueAt(index, 13).toString());
         int avl_sleeper_S = Integer.parseInt(model.getValueAt(index, 14).toString());
         
+        
+        if(status.equals("Running")){
         BookForm bof = new BookForm(id, train_no, train_name, train_source, train_dest, train_route, ac_II_S, ac_II_P, sleeper_S, sleeper_P, departTime, status, train_date, uname, avl_ac_II_S, avl_sleeper_S);
         bof.setVisible(true);
         bof.pack();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Train Cancelled", "You Cannot Book this Train!", HEIGHT);
+        }
 //        bof.
         
 //         JOptionPane.showMessageDialog(null, "Clicked", "Clicked!", HEIGHT);

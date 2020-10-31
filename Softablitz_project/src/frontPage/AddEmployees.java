@@ -177,7 +177,7 @@ public class AddEmployees extends javax.swing.JInternalFrame {
                 try {
                   con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
                 } catch (SQLException ex) {
-                    Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 String insertQuery = "insert into emp_details values(null,'"+fName+"','"+lName+"','"+phNo+"','"+Desg+"')";
 
@@ -186,7 +186,7 @@ public class AddEmployees extends javax.swing.JInternalFrame {
                 System.out.print(x);
 
                 if(x==1){
-                    NewUser.infoMessage("Added Successfully!", "Alert");
+                    NewUser1.infoMessage("Added Successfully!", "Alert");
                 }
 
             }

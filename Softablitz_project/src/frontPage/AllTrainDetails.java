@@ -5,6 +5,18 @@
  */
 package frontPage;
 
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.Statement;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.table.TableModel;
+import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author ABHINAV ANAND
@@ -14,7 +26,9 @@ public class AllTrainDetails extends javax.swing.JInternalFrame {
     /**
      * Creates new form AllTrainDetails
      */
-    public AllTrainDetails() {
+    String uname;
+    public AllTrainDetails(String uname) {
+        this.uname = uname;
         initComponents();
     }
 
@@ -26,11 +40,11 @@ public class AllTrainDetails extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         daretotravelPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("daretotravelPU").createEntityManager();
         trainDetailsQuery = java.beans.Beans.isDesignTime() ? null : daretotravelPUEntityManager.createQuery("SELECT t FROM TrainDetails t");
         trainDetailsList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : trainDetailsQuery.getResultList();
+        show = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -40,77 +54,119 @@ public class AllTrainDetails extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("All Train Details");
 
-        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, trainDetailsList, jTable1);
-        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
-        columnBinding.setColumnName("Id");
-        columnBinding.setColumnClass(Integer.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${trainNo}"));
-        columnBinding.setColumnName("Train No");
-        columnBinding.setColumnClass(Integer.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${trainName}"));
-        columnBinding.setColumnName("Train Name");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${trainSource}"));
-        columnBinding.setColumnName("Train Source");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${trainDest}"));
-        columnBinding.setColumnName("Train Dest");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${trainRoute}"));
-        columnBinding.setColumnName("Train Route");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${trainTime}"));
-        columnBinding.setColumnName("Train Time");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${sleeperPrice}"));
-        columnBinding.setColumnName("Sleeper Price");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${sleeperSeats}"));
-        columnBinding.setColumnName("Sleeper Seats");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${ACIIPrice}"));
-        columnBinding.setColumnName("ACIIPrice");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${ACIISeats}"));
-        columnBinding.setColumnName("ACIISeats");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${trainStatus}"));
-        columnBinding.setColumnName("Train Status");
-        columnBinding.setColumnClass(String.class);
-        bindingGroup.addBinding(jTableBinding);
-        jTableBinding.bind();
+        show.setText("Show");
+        show.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showActionPerformed(evt);
+            }
+        });
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 834, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(show, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 813, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(show)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        bindingGroup.bind();
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void showActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showActionPerformed
+        // TODO add your handling code here:
+        
+       try{
+            Connection con = null;
+            Class.forName("com.mysql.jdbc.Driver");
+
+            String databaseUrl = "jdbc:mysql://localhost:3307/daretotravel";
+            try {
+            con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
+            } catch (SQLException ex) {
+                Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            
+            Statement stat = (Statement) con.createStatement();
+            String selectQuery = "SELECT * FROM `train_details` WHERE 1";
+            ResultSet rs = stat.executeQuery(selectQuery);
+           
+
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_showActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        int index = jTable1.getSelectedRow();
+        TableModel model = jTable1.getModel();
+        int id = Integer.parseInt(model.getValueAt(index, 0).toString());
+        String train_name = (String) model.getValueAt(index, 2);
+        int train_no = Integer.parseInt(model.getValueAt(index, 1).toString());
+        String train_source = (String) model.getValueAt(index, 3);
+        String train_dest = (String) model.getValueAt(index, 4);
+        String train_route = (String) model.getValueAt(index, 5);
+        int ac_II_S = Integer.parseInt(model.getValueAt(index, 8).toString());
+        int ac_II_P = Integer.parseInt(model.getValueAt(index, 9).toString());
+        int sleeper_S = Integer.parseInt(model.getValueAt(index, 10).toString());
+        int sleeper_P = Integer.parseInt(model.getValueAt(index, 11).toString());
+
+        String departTime = (String) model.getValueAt(index, 6);
+        String status = (String) model.getValueAt(index, 7);
+        Date train_date = (Date) model.getValueAt(index, 12);
+
+        int avl_ac_II_S = Integer.parseInt(model.getValueAt(index, 13).toString());
+        int avl_sleeper_S = Integer.parseInt(model.getValueAt(index, 14).toString());
+
+        EditTrainsInfo bof = new EditTrainsInfo(id, train_no, train_name, train_source, train_dest, train_route, ac_II_S, ac_II_P, sleeper_S, sleeper_P, departTime, status, train_date, uname, avl_ac_II_S, avl_sleeper_S);
+        bof.setVisible(true);
+        bof.pack();
+
+    }//GEN-LAST:event_jTable1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.persistence.EntityManager daretotravelPUEntityManager;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton show;
     private java.util.List<frontPage.TrainDetails> trainDetailsList;
     private javax.persistence.Query trainDetailsQuery;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

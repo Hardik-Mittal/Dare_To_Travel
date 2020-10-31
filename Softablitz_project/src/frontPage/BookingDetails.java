@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
@@ -131,7 +132,7 @@ public class BookingDetails extends javax.swing.JInternalFrame {
             try {
             con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
             } catch (SQLException ex) {
-                Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             
@@ -187,11 +188,17 @@ public class BookingDetails extends javax.swing.JInternalFrame {
         //        int avl_sleeper_S = Integer.parseInt(model.getValueAt(index, 14).toString());
         String tstatus = (String) model.getValueAt(index, 16);
         String meals = (String) model.getValueAt(index, 17);
-        int wstatus = Integer.parseInt(model.getValueAt(index, 18).toString());
-
-        BookmelsORcancelTickets boft = new BookmelsORcancelTickets(sno, id, train_no, train_name, train_source, train_dest, train_route, coach, departTime, status, fname, lname, train_date, uname, nseats, amtp, tstatus, meals, wstatus);
+        String meals_dest = (String) model.getValueAt(index, 18);
+        int wstatus = Integer.parseInt(model.getValueAt(index, 19).toString());
+        
+        if(tstatus.equals("cancelled")){
+            JOptionPane.showMessageDialog(null, "Ticket Already Cancelled!!");
+        }
+        else{
+        BookmelsORcancelTickets boft = new BookmelsORcancelTickets(sno, id, train_no, train_name, train_source, train_dest, train_route, coach, departTime, status, fname, lname, train_date, uname, nseats, amtp, tstatus, meals, meals_dest, wstatus);
         boft.setVisible(true);
         boft.pack();
+        }
         //        bof.
 
         //         JOptionPane.showMessageDialog(null, "Clicked", "Clicked!", HEIGHT);
@@ -229,9 +236,10 @@ public class BookingDetails extends javax.swing.JInternalFrame {
         //        int avl_sleeper_S = Integer.parseInt(model.getValueAt(index, 14).toString());
         String tstatus = (String) model.getValueAt(index, 16);
         String meals = (String) model.getValueAt(index, 17);
-        int wstatus = Integer.parseInt(model.getValueAt(index, 18).toString());
+        String meals_dest = (String) model.getValueAt(index, 18);
+        int wstatus = Integer.parseInt(model.getValueAt(index, 19).toString());
 
-        BookmelsORcancelTickets bofq = new BookmelsORcancelTickets(sno, id, train_no, train_name, train_source, train_dest, train_route, coach, departTime, status, fname, lname, train_date, ubooked, nseats, amtp, tstatus, meals,wstatus);
+        BookmelsORcancelTickets bofq = new BookmelsORcancelTickets(sno, id, train_no, train_name, train_source, train_dest, train_route, coach, departTime, status, fname, lname, train_date, ubooked, nseats, amtp, tstatus, meals, meals_dest, wstatus);
         bofq.setVisible(true);
         bofq.pack();
         //        bof.

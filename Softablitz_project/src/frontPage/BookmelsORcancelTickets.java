@@ -26,13 +26,15 @@ public class BookmelsORcancelTickets extends javax.swing.JFrame {
      */
     public BookmelsORcancelTickets() {
         initComponents();
+        idCBFillData(source, route);
     }
     
      int sno, id, train_no, nseats, amtp, wstatus;
-    String train_name, source, dest, route, coach, time, status, uname, tstatus, meals, fname, lname;
+    String train_name, source, dest, route, coach, time, status, uname, tstatus, meals, fname, lname, meals_dest;
     Date date;
-    public BookmelsORcancelTickets(int sno, int id, int train_no, String train_name, String source, String dest, String route, String coach, String time, String status, String fname, String lname, Date date, String uname, int nseats, int amtp, String tstatus, String meals, int wstatus){
+    public BookmelsORcancelTickets(int sno, int id, int train_no, String train_name, String source, String dest, String route, String coach, String time, String status, String fname, String lname, Date date, String uname, int nseats, int amtp, String tstatus, String meals, String meals_dest, int wstatus){
         initComponents();
+        
         this.sno = sno;
         this.id = id;
         this.train_no = train_no;
@@ -56,11 +58,48 @@ public class BookmelsORcancelTickets extends javax.swing.JFrame {
         
         this.tstatus = tstatus;
         this.meals = meals;
+        this.meals_dest = meals_dest;
         this.wstatus = wstatus;
         jButton2.setText(tstatus);
+        idCBFillData(source, route);
         
     }
 
+    public void idCBFillData(String source, String route) {
+//        try {
+//            Connection con = null;
+//            Class.forName("com.mysql.jdbc.Driver");
+//
+//            String databaseUrl = "jdbc:mysql://localhost:3307/daretotravel";
+//            try {
+//                con = (Connection) DriverManager.getConnection(databaseUrl, "root", "anand1234");
+//            } catch (SQLException ex) {
+//                Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+
+//            Statement stat = (Statement) con.createStatement();
+//            String selectQuery = "select train_source, train_route from booking_details where sno = '"+sno+"'";
+//            ResultSet rs = stat.executeQuery(selectQuery);
+
+//            while (rs.next()) {
+
+                this.source = source;
+                this.route = route;
+                mealsCB.addItem(source);
+                mealsCB.addItem(route);
+
+//            }
+//                int x = stat.executeUpdate(insertQuery);
+//                System.out.print(x);
+//
+//                if(x==1){
+//                    NewUser.infoMessage("Added Successfully!", "Alert");
+//                }
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,10 +111,17 @@ public class BookmelsORcancelTickets extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        mealsCB = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Select station and Book Meals or cancel tickets");
 
         jButton1.setText("Book Meals");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancel Tickets");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +136,9 @@ public class BookmelsORcancelTickets extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(70, 70, 70)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(mealsCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(99, 99, 99))
@@ -98,7 +146,9 @@ public class BookmelsORcancelTickets extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(104, 104, 104)
+                .addGap(60, 60, 60)
+                .addComponent(mealsCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -120,7 +170,7 @@ public class BookmelsORcancelTickets extends javax.swing.JFrame {
                 try {
                   con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
                 } catch (SQLException ex) {
-                    Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
 //                Statement stat = (Statement) con.createStatement();
@@ -157,11 +207,12 @@ public class BookmelsORcancelTickets extends javax.swing.JFrame {
                     x = stat.executeUpdate(insertQuery);
                 }
                 
-                
+                String mealsCancel = "cancelled";
+                String mealsDestCancel = "";
                 int a=0, z=0;
 
                 
-                String insertQuery2 = "UPDATE `booking_details` SET `ticket_status` = '"+tstatus+"' WHERE `train_no` = '" + train_no + "' AND `id` = '"+ id +"' AND `sno` = '"+sno+"' ";
+                String insertQuery2 = "UPDATE `booking_details` SET `ticket_status` = '"+tstatus+"', `meals_status` = '"+mealsCancel+"', `meal_Dest` = '"+mealsDestCancel+"' WHERE `train_no` = '" + train_no + "' AND `id` = '"+ id +"' AND `sno` = '"+sno+"' ";
                 
                 Statement stat2 = (Statement) con.createStatement();
                 int y = stat2.executeUpdate(insertQuery2);
@@ -208,19 +259,19 @@ public class BookmelsORcancelTickets extends javax.swing.JFrame {
 //                System.out.print(y);
 //
                 if(x==1){
-                    NewUser.infoMessage(" x Cancelled Successfully!", "Alert");
+                    NewUser1.infoMessage(" x Cancelled Successfully!", "Alert");
                     
                 }
                 if(y==1){
-                    NewUser.infoMessage(" y Cancelled Successfully!", "Alert");
+                    NewUser1.infoMessage(" y Cancelled Successfully!", "Alert");
                     
                 }
                 if(z==1){
-                    NewUser.infoMessage(" z Cancelled Successfully!", "Alert");
+                    NewUser1.infoMessage(" z Cancelled Successfully!", "Alert");
                     
                 }
                 if(a==1){
-                    NewUser.infoMessage(" a Cancelled Successfully!", "Alert");
+                    NewUser1.infoMessage(" a Cancelled Successfully!", "Alert");
                     
                 }
 
@@ -240,7 +291,7 @@ public class BookmelsORcancelTickets extends javax.swing.JFrame {
                 try {
                   con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
                 } catch (SQLException ex) {
-                    Logger.getLogger(NewUser.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
                 int upd1 = 0, upd2 = 0, x=0;
@@ -318,11 +369,11 @@ public class BookmelsORcancelTickets extends javax.swing.JFrame {
 //                System.out.print(y);
 //
                 if(x==1){
-                    NewUser.infoMessage(" x Cancelled Successfully!", "Alert");
+                    NewUser1.infoMessage(" x Cancelled Successfully!", "Alert");
                     
                 }
                 if(y==1){
-                    NewUser.infoMessage(" y Cancelled Successfully!", "Alert");
+                    NewUser1.infoMessage(" y Cancelled Successfully!", "Alert");
                     
                 }
 //                if(z==1){
@@ -330,7 +381,7 @@ public class BookmelsORcancelTickets extends javax.swing.JFrame {
 //                    
 //                }
                 if(a==1){
-                    NewUser.infoMessage(" a Cancelled Successfully!", "Alert");
+                    NewUser1.infoMessage(" a Cancelled Successfully!", "Alert");
                     
                 }
                 
@@ -343,6 +394,36 @@ public class BookmelsORcancelTickets extends javax.swing.JFrame {
             
         }  
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String mealDest = (String) mealsCB.getSelectedItem();
+        String mealCh = "YES";
+        
+        try {
+                Connection con = null;
+                Class.forName("com.mysql.jdbc.Driver");
+
+                String databaseUrl = "jdbc:mysql://localhost:3307/daretotravel";
+                try {
+                    con = (Connection) DriverManager.getConnection(databaseUrl, "root", "anand1234");
+                } catch (SQLException ex) {
+                    Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                 String insertQuery = "UPDATE `booking_details` SET `meals_status` = '" + mealCh + "', `meal_dest` = '"+mealDest+"' WHERE `sno` = '" + sno + "'";
+                 Statement stat = (Statement) con.createStatement();
+                int x = stat.executeUpdate(insertQuery);
+                System.out.print(x);
+
+                if (x == 1) {
+                    NewUser1.infoMessage(" Meals Added Successfully!", "Alert");
+                }
+
+            } catch (ClassNotFoundException | SQLException e) {
+                System.out.println(e);
+            }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -382,5 +463,6 @@ public class BookmelsORcancelTickets extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> mealsCB;
     // End of variables declaration//GEN-END:variables
 }

@@ -58,6 +58,11 @@ public class Home_Screen extends javax.swing.JFrame {
         railwatBtn.setFont(new java.awt.Font("SEGA LOGO FONT", 0, 14)); // NOI18N
         railwatBtn.setText("RAILWAYS");
         railwatBtn.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        railwatBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                railwatBtnActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("SEGA LOGO FONT", 0, 14)); // NOI18N
         jButton2.setText("MEALS");
@@ -125,6 +130,13 @@ public class Home_Screen extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void railwatBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_railwatBtnActionPerformed
+        // TODO add your handling code here:
+        UserControl uc = new UserControl(loguser);
+        uc.setLocationRelativeTo(null);
+        uc.setVisible(true);
+    }//GEN-LAST:event_railwatBtnActionPerformed
 
     /**
      * @param args the command line arguments
