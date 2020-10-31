@@ -50,7 +50,7 @@ public class Main extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-       mainscreen mr = new mainscreen();
+       Mainscreen mr = new Mainscreen();
        mr.setLocationRelativeTo(null);
        mr.setVisible(true);
        

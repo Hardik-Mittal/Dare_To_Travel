@@ -34,7 +34,7 @@ public class handleNewUser implements Runnable {
     public void run() {
         while (true) {
             try {
-                NewUser1 nu = (NewUser1) objectInputStream.readObject();
+                Registration nu = (Registration) objectInputStream.readObject();
                 System.out.println("User received");
                 System.out.println(nu);
             } catch (Exception e) {

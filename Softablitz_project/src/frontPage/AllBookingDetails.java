@@ -108,7 +108,7 @@ public class AllBookingDetails extends javax.swing.JInternalFrame {
             try {
             con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
             } catch (SQLException ex) {
-                Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             

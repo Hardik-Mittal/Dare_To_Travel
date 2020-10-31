@@ -39,7 +39,7 @@ public class AssignTrains extends javax.swing.JInternalFrame {
                 try {
                   con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
                 } catch (SQLException ex) {
-                    Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
                 }
 //                String insertQuery = "insert into emp_details values(null,'"+fName+"','"+lName+"','"+phNo+"','"+Desg+"')";
 
@@ -72,7 +72,7 @@ public class AssignTrains extends javax.swing.JInternalFrame {
                 try {
                   con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
                 } catch (SQLException ex) {
-                    Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
                 }
 //                String insertQuery = "insert into emp_details values(null,'"+fName+"','"+lName+"','"+phNo+"','"+Desg+"')";
 
@@ -204,7 +204,7 @@ public class AssignTrains extends javax.swing.JInternalFrame {
                 try {
                   con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
                 } catch (SQLException ex) {
-                    Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 String insertQuery = "insert into assign_train values(null,'"+eid+"','"+tno+"')";
 
@@ -213,7 +213,7 @@ public class AssignTrains extends javax.swing.JInternalFrame {
                 System.out.print(x);
 
                 if(x==1){
-                    NewUser1.infoMessage("Added Successfully!", "Alert");
+                    Registration.infoMessage("Added Successfully!", "Alert");
                 }
 
             }
@@ -231,7 +231,7 @@ public class AssignTrains extends javax.swing.JInternalFrame {
         
         String query = "SELECT * FROM `assign_train` WHERE `train no` =?";
         try {
-            ps = (PreparedStatement) myConnection.getConnection().prepareStatement(query);
+            ps = (PreparedStatement) MyConnection.getConnection().prepareStatement(query);
             ps.setString(1, tno);
             
             rs = ps.executeQuery();

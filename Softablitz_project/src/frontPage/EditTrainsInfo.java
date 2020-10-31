@@ -380,7 +380,7 @@ public class EditTrainsInfo extends javax.swing.JFrame {
                 try {
                     con = (Connection) DriverManager.getConnection(databaseUrl, "root", "anand1234");
                 } catch (SQLException ex) {
-                    Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
                 String insertQuery = "UPDATE `train_details` SET `train_status` = '" + ntstatus + "' WHERE `train_no` = '" + train_no + "' AND `id` = '"+ id +"'";
@@ -401,7 +401,7 @@ public class EditTrainsInfo extends javax.swing.JFrame {
                 System.out.println(y);
 
                 if (x == 1 && y == 1) {
-                    NewUser1.infoMessage("Train Cancelled Successfully!", "Alert");
+                    Registration.infoMessage("Train Cancelled Successfully!", "Alert");
                 }
 
             } catch (ClassNotFoundException | SQLException e) {
@@ -419,7 +419,7 @@ public class EditTrainsInfo extends javax.swing.JFrame {
                 try {
                     con = (Connection) DriverManager.getConnection(databaseUrl, "root", "anand1234");
                 } catch (SQLException ex) {
-                    Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
                 String insertQuery = "UPDATE `train_details` SET `train_status` = '" + ntstatus + "', `train_route` = '"+ntroute+"', `ACII_Seats` = `ACII_Seats`+'"+ac_2_s+"', `ACII_Price` = '"+ac_2_p+"', `Sleeper_Seats` = `Sleeper_Seats`+'"+sl_s+"', `Sleeper_Price` = '"+sl_p+"', `avl_acII_seats` = `avl_acII_seats`+'"+ac_2_s+"',`avl_sleeper_seats` = `avl_sleeper_seats`+'"+sl_s+"'  WHERE `train_no` = '" + train_no + "' AND `id` = '"+ id +"'";
@@ -480,7 +480,7 @@ public class EditTrainsInfo extends javax.swing.JFrame {
                         }
                     }
                 if(x==1){
-                    NewUser1.infoMessage("Successfull!", "Alert");
+                    Registration.infoMessage("Successfull!", "Alert");
                     
                 }
                 

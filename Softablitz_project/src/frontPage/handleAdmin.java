@@ -30,7 +30,7 @@ public class handleAdmin implements Runnable {
     public void run() {
         while (true) {
             try {
-                login1 l = (login1) objectInputStream.readObject();
+                Login l = (Login) objectInputStream.readObject();
                 System.out.println("User received");
                 System.out.println(l);
             } catch (Exception e) {

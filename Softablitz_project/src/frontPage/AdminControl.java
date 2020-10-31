@@ -347,7 +347,7 @@ public class AdminControl extends javax.swing.JFrame {
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         // TODO add your handling code here:
-        login1 l = new login1();
+        Login l = new Login();
         l.setLocationRelativeTo(null);
         l.setVisible(true);
         this.dispose();

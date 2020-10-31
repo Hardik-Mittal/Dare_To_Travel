@@ -38,15 +38,37 @@ public class AddBookingInfo extends javax.swing.JInternalFrame {
     }
 
      public void sourceCBFillData(){
+         
+         /*try{
+            Client c = new Client();
+            Client.main(null);
+            
+            String station = null;
+            
+            do{
+                
+                station = c.StationInfo("train_source");
+                
+                System.out.println(station);
+                
+                source.addItem(station);
+                
+                station=null;
+            }while(station.equals(null));
+         }catch(IOException e)
+         {
+             e.printStackTrace();
+         }*/
+         
         try{
             Connection con = null;
                 Class.forName("com.mysql.jdbc.Driver");
 
-                String databaseUrl = "jdbc:mysql://localhost:3307/daretotravel";
+                String databaseUrl = "jdbc:mysql://localhost:3306/daretotravel";
                 try {
-                  con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
+                  con = (Connection) DriverManager.getConnection(databaseUrl, "hardik","1234");
                 } catch (SQLException ex) {
-                    Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
                 Statement stat = (Statement) con.createStatement();
@@ -65,15 +87,37 @@ public class AddBookingInfo extends javax.swing.JInternalFrame {
     }
     
     public void destCBFillData(){
+        
+        /*try{
+            Client c = new Client();
+            Client.main(null);
+            
+            String station = null;
+            
+            do{
+                
+                station = c.StationInfo("train_dest");
+                
+                System.out.println(station);
+                
+                dest.addItem(station);
+                
+                station=null;
+            }while(station.equals(null));
+         }catch(IOException e)
+         {
+             e.printStackTrace();
+         }*/
+        
         try{
             Connection con = null;
                 Class.forName("com.mysql.jdbc.Driver");
 
-                String databaseUrl = "jdbc:mysql://localhost:3307/daretotravel";
+                String databaseUrl = "jdbc:mysql://localhost:3306/daretotravel";
                 try {
-                  con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
+                  con = (Connection) DriverManager.getConnection(databaseUrl, "hardik","1234");
                 } catch (SQLException ex) {
-                    Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
                 Statement stat = (Statement) con.createStatement();
@@ -162,6 +206,12 @@ public class AddBookingInfo extends javax.swing.JInternalFrame {
         jLabel5.setText("Search Results");
 
         jLabel6.setText("Booking Details");
+
+        source.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sourceActionPerformed(evt);
+            }
+        });
 
         search.setText("Search");
         search.addActionListener(new java.awt.event.ActionListener() {
@@ -258,11 +308,11 @@ public class AddBookingInfo extends javax.swing.JInternalFrame {
             Connection con = null;
             Class.forName("com.mysql.jdbc.Driver");
 
-            String databaseUrl = "jdbc:mysql://localhost:3307/daretotravel";
+            String databaseUrl = "jdbc:mysql://localhost:3306/daretotravel";
             try {
-            con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
+            con = (Connection) DriverManager.getConnection(databaseUrl, "hardik","1234");
             } catch (SQLException ex) {
-                Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             Statement stat = (Statement) con.createStatement();
@@ -328,6 +378,10 @@ public class AddBookingInfo extends javax.swing.JInternalFrame {
 //         JOptionPane.showMessageDialog(null, "Clicked", "Clicked!", HEIGHT);
         
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void sourceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sourceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sourceActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -58,7 +58,7 @@ public class Server {
         
         String query = "SELECT * FROM `user_details` WHERE `username` =? AND `password` =?";
         try {
-            ps = (PreparedStatement) myConnection.getConnection().prepareStatement(query);
+            ps = (PreparedStatement) MyConnection.getConnection().prepareStatement(query);
             
             ps.setString(1, uname1);
             ps.setString(2, pass1);
@@ -82,7 +82,7 @@ public class Server {
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(login1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         
@@ -101,7 +101,7 @@ public class Server {
             try {
               con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
             } catch (SQLException ex) {
-                Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
             }
             String insertQuery = "insert into user_details values(null,'"+firstname+"','"+lastname+"','"+username+"','"+password+"','"+email+"','"+contact+"','"+passwordck+"','"+gender+"')";
             
@@ -110,14 +110,14 @@ public class Server {
             System.out.print(x);
             
             if(x==1){
-                NewUser1.infoMessage("Registered Successfully!", "Alert");
+                Registration.infoMessage("Registered Successfully!", "Alert");
             }
             
         }
         catch(ClassNotFoundException e){
             System.out.println(e);
         } catch (SQLException ex) {
-            Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
         }
         
      }
@@ -131,7 +131,7 @@ public class Server {
         
         String query = "SELECT * FROM `admin_details` WHERE `username` =? AND `password` =?";
         try {
-            ps = (PreparedStatement) myConnection.getConnection().prepareStatement(query);
+            ps = (PreparedStatement) MyConnection.getConnection().prepareStatement(query);
             
             ps.setString(1, uname1);
             ps.setString(2, pass1);
@@ -154,7 +154,7 @@ public class Server {
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(login1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
                 
      }

@@ -40,7 +40,7 @@ public class AssignDate extends javax.swing.JInternalFrame {
             try {
                 con = (Connection) DriverManager.getConnection(databaseUrl, "root", "anand1234");
             } catch (SQLException ex) {
-                Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
             }
 //                String insertQuery = "insert into emp_details values(null,'"+fName+"','"+lName+"','"+phNo+"','"+Desg+"')";
 
@@ -73,7 +73,7 @@ public class AssignDate extends javax.swing.JInternalFrame {
             try {
                 con = (Connection) DriverManager.getConnection(databaseUrl, "root", "anand1234");
             } catch (SQLException ex) {
-                Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
             }
 //                String insertQuery = "insert into emp_details values(null,'"+fName+"','"+lName+"','"+phNo+"','"+Desg+"')";
 
@@ -213,7 +213,7 @@ public class AssignDate extends javax.swing.JInternalFrame {
                 try {
                     con = (Connection) DriverManager.getConnection(databaseUrl, "root", "anand1234");
                 } catch (SQLException ex) {
-                    Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
 //                String insertQuery = "INSERT INTO `train_details`(`train_no`, `train_name`, `train_source`, `train_dest`, `train_route`, `train_time`, `train_status`, `ACII_Seats`, `ACII_Price`, `Sleeper_Seats`, `Sleeper_Price`) SELECT `train_no`, `train_name`, `train_source`, `train_dest`, `train_route`, `train_time`, `train_status`, `ACII_Seats`, `ACII_Price`, `Sleeper_Seats`, `Sleeper_Price`  FROM `train_details` WHERE `train_no` = '" + tno + "'";
@@ -227,7 +227,7 @@ public class AssignDate extends javax.swing.JInternalFrame {
                 System.out.print(x);
 
                 if (x == 1) {
-                    NewUser1.infoMessage("Added Successfully!", "Alert");
+                    Registration.infoMessage("Added Successfully!", "Alert");
                 }
 
             } catch (ClassNotFoundException | SQLException e) {
@@ -256,7 +256,7 @@ public class AssignDate extends javax.swing.JInternalFrame {
                 try {
                     con = (Connection) DriverManager.getConnection(databaseUrl, "root", "anand1234");
                 } catch (SQLException ex) {
-                    Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 String insertQuery = "INSERT INTO `train_details`(`train_no`, `train_name`, `train_source`, `train_dest`, `train_route`, `train_time`, `train_status`, `ACII_Seats`, `ACII_Price`, `Sleeper_Seats`, `Sleeper_Price`) SELECT `train_no`, `train_name`, `train_source`, `train_dest`, `train_route`, `train_time`, `train_status`, `ACII_Seats`, `ACII_Price`, `Sleeper_Seats`, `Sleeper_Price`  FROM `train_details` WHERE `train_no` = '" + tno + "'";
                 
@@ -265,7 +265,7 @@ public class AssignDate extends javax.swing.JInternalFrame {
                 System.out.print(x);
 
                 if (x == 1) {
-                    NewUser1.infoMessage("Added Successfully!", "Alert");
+                    Registration.infoMessage("Added Successfully!", "Alert");
                 }
 
             } catch (ClassNotFoundException | SQLException e) {

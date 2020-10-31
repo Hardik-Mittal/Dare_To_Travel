@@ -365,7 +365,7 @@ public class BookForm extends javax.swing.JFrame {
                 try {
                   con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
                 } catch (SQLException ex) {
-                    Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 String insertQuery1 = "insert into booking_details values(null,'"+id+"','"+train_no+"','"+train_name+"','"+source+"','"+dest+"','"+route+"','"+cCoach+"','"+time+"','"+status+"','"+fName+"','"+lName+"','"+seats+"','"+date+"','"+uname+"','"+pay+"', '"+tstatus+"', '"+meal_status+"', '"+meal_dest+"', '"+wstatus+"')";
                 String insertQueryS = "UPDATE `train_details` SET `avl_acII_seats` = '"+avl_ac_II_S+"',`avl_sleeper_seats` = '"+avl_sleeper_S+"' WHERE `train_no` = '"+train_no+"' AND `id` = '"+ id +"'";
@@ -381,7 +381,7 @@ public class BookForm extends javax.swing.JFrame {
                 System.out.print(y);
 
                 if(x==1&&y==1){
-                    NewUser1.infoMessage("Added Successfully!", "Alert");
+                    Registration.infoMessage("Added Successfully!", "Alert");
                     
                 }
 

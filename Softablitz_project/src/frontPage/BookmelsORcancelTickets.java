@@ -170,7 +170,7 @@ public class BookmelsORcancelTickets extends javax.swing.JFrame {
                 try {
                   con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
                 } catch (SQLException ex) {
-                    Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
 //                Statement stat = (Statement) con.createStatement();
@@ -259,19 +259,19 @@ public class BookmelsORcancelTickets extends javax.swing.JFrame {
 //                System.out.print(y);
 //
                 if(x==1){
-                    NewUser1.infoMessage(" x Cancelled Successfully!", "Alert");
+                    Registration.infoMessage(" x Cancelled Successfully!", "Alert");
                     
                 }
                 if(y==1){
-                    NewUser1.infoMessage(" y Cancelled Successfully!", "Alert");
+                    Registration.infoMessage(" y Cancelled Successfully!", "Alert");
                     
                 }
                 if(z==1){
-                    NewUser1.infoMessage(" z Cancelled Successfully!", "Alert");
+                    Registration.infoMessage(" z Cancelled Successfully!", "Alert");
                     
                 }
                 if(a==1){
-                    NewUser1.infoMessage(" a Cancelled Successfully!", "Alert");
+                    Registration.infoMessage(" a Cancelled Successfully!", "Alert");
                     
                 }
 
@@ -291,7 +291,7 @@ public class BookmelsORcancelTickets extends javax.swing.JFrame {
                 try {
                   con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
                 } catch (SQLException ex) {
-                    Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
                 int upd1 = 0, upd2 = 0, x=0;
@@ -369,11 +369,11 @@ public class BookmelsORcancelTickets extends javax.swing.JFrame {
 //                System.out.print(y);
 //
                 if(x==1){
-                    NewUser1.infoMessage(" x Cancelled Successfully!", "Alert");
+                    Registration.infoMessage(" x Cancelled Successfully!", "Alert");
                     
                 }
                 if(y==1){
-                    NewUser1.infoMessage(" y Cancelled Successfully!", "Alert");
+                    Registration.infoMessage(" y Cancelled Successfully!", "Alert");
                     
                 }
 //                if(z==1){
@@ -381,7 +381,7 @@ public class BookmelsORcancelTickets extends javax.swing.JFrame {
 //                    
 //                }
                 if(a==1){
-                    NewUser1.infoMessage(" a Cancelled Successfully!", "Alert");
+                    Registration.infoMessage(" a Cancelled Successfully!", "Alert");
                     
                 }
                 
@@ -408,7 +408,7 @@ public class BookmelsORcancelTickets extends javax.swing.JFrame {
                 try {
                     con = (Connection) DriverManager.getConnection(databaseUrl, "root", "anand1234");
                 } catch (SQLException ex) {
-                    Logger.getLogger(NewUser1.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
                  String insertQuery = "UPDATE `booking_details` SET `meals_status` = '" + mealCh + "', `meal_dest` = '"+mealDest+"' WHERE `sno` = '" + sno + "'";
@@ -417,7 +417,7 @@ public class BookmelsORcancelTickets extends javax.swing.JFrame {
                 System.out.print(x);
 
                 if (x == 1) {
-                    NewUser1.infoMessage(" Meals Added Successfully!", "Alert");
+                    Registration.infoMessage(" Meals Added Successfully!", "Alert");
                 }
 
             } catch (ClassNotFoundException | SQLException e) {

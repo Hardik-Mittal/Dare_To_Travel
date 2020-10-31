@@ -40,10 +40,10 @@ public class UserControl extends javax.swing.JFrame {
         pane = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        addBookBT = new javax.swing.JMenuItem();
+        bookDeatilsBT = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        signOutBT = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -66,33 +66,33 @@ public class UserControl extends javax.swing.JFrame {
 
         jMenu1.setText("Bookings");
 
-        jMenuItem2.setText("Add Booking");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        addBookBT.setText("Add Booking");
+        addBookBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                addBookBTActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(addBookBT);
 
-        jMenuItem3.setText("Booking Details");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        bookDeatilsBT.setText("Booking Details");
+        bookDeatilsBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                bookDeatilsBTActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        jMenu1.add(bookDeatilsBT);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Logout");
 
-        jMenuItem5.setText("sign out");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        signOutBT.setText("sign out");
+        signOutBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                signOutBTActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem5);
+        jMenu2.add(signOutBT);
 
         jMenuBar1.add(jMenu2);
 
@@ -124,27 +124,29 @@ public class UserControl extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void addBookBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookBTActionPerformed
         // TODO add your handling code here:
         AddBookingInfo abi = new AddBookingInfo(uname);
         pane.add(abi);
         abi.show();
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_addBookBTActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void bookDeatilsBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookDeatilsBTActionPerformed
         // TODO add your handling code here:
         BookingDetails bd = new BookingDetails(uname);
         pane.add(bd);
         bd.show();
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_bookDeatilsBTActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void signOutBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signOutBTActionPerformed
         // TODO add your handling code here:
-        login1 l = new login1();
+        
+        this.dispose();
+        Login l = new Login();
         l.setLocationRelativeTo(null);
         l.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+        
+    }//GEN-LAST:event_signOutBTActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,6 +177,7 @@ public class UserControl extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new UserControl().setVisible(true);
             }
@@ -182,15 +185,15 @@ public class UserControl extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem addBookBT;
+    private javax.swing.JMenuItem bookDeatilsBT;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JDesktopPane pane;
+    private javax.swing.JMenuItem signOutBT;
     // End of variables declaration//GEN-END:variables
 }
