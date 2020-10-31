@@ -432,7 +432,7 @@ public class EditTrainsInfo extends javax.swing.JFrame {
 //                st2.setInt(2, id);
                 ResultSet rs2 = st2.executeQuery();
                 while(rs2.next()) {
-                    String wait_status = rs2.getString(19);
+                    String wait_status = rs2.getString(20);
 //                    String nseats = rs2.getString(13);
                     String tstatus = rs2.getString(17);
                     String coach = rs2.getString(8);
@@ -445,11 +445,11 @@ public class EditTrainsInfo extends javax.swing.JFrame {
                     bookedroute = ntroute;
 //                    nseats = Integer.parseInt(nseats);
                     int wstat = Integer.parseInt(wait_status);
-//                    System.out.println("wstat "+wstat);
+                    System.out.println("wstat "+wstat);
                     String snum = rs2.getString(1);
                     
                     if(tstatus.equals("confirmed")){
-                        String insertQuery4 = "UPDATE `booking_details` SET `train_route` = '"+bookedroute+"', `meal_dest` = '"+meal_dest+"' WHERE `train_no` = '" + train_no + "' AND `id` = '"+ id +"' AND `train_coach` = '"+coach+"' AND `sno` = '"+snum+"'";
+                        String insertQuery4 = "UPDATE `booking_details` SET `train_route` = '"+bookedroute+"', `meal_dest` = '"+meal_dest+"' WHERE `sno` = '"+snum+"'";
                 
                         Statement stat4 = (Statement) con.createStatement();
                         a = stat4.executeUpdate(insertQuery4);
@@ -467,27 +467,27 @@ public class EditTrainsInfo extends javax.swing.JFrame {
                             tstatus = "confirmed";
                             
                             wstat = 0;
-                            String insertQuery4 = "UPDATE `booking_details` SET `ticket_status` = '"+tstatus+"',`train_route` = '"+bookedroute+"', `meal_dest` = '"+meal_dest+"', `waiting_status` = '"+wstat+"' WHERE `train_no` = '" + train_no + "' AND `id` = '"+ id +"' AND `train_coach` = '"+coach+"' AND `sno` = '"+snum+"'";
+                            String insertQuery4 = "UPDATE `booking_details` SET `ticket_status` = '"+tstatus+"',`train_route` = '"+bookedroute+"', `meal_dest` = '"+meal_dest+"', `waiting_status` = '"+wstat+"', WHERE `sno` = '"+snum+"'";
                 
                         Statement stat4 = (Statement) con.createStatement();
                         a = stat4.executeUpdate(insertQuery4);
                         }
                         else{
-                            String insertQuery4 = "UPDATE `booking_details` SET `ticket_status` = '"+tstatus+"',`train_route` = '"+bookedroute+"', `meal_dest` = '"+meal_dest+"', `waiting_status` = '"+wstat+"' WHERE `train_no` = '" + train_no + "' AND `id` = '"+ id +"' AND `train_coach` = '"+coach+"' AND `sno` = '"+snum+"'";
+                            String insertQuery4 = "UPDATE `booking_details` SET `ticket_status` = '"+tstatus+"',`train_route` = '"+bookedroute+"', `meal_dest` = '"+meal_dest+"', `waiting_status` = '"+wstat+"' WHERE  `sno` = '"+snum+"'";
                 
                         Statement stat4 = (Statement) con.createStatement();
                         a = stat4.executeUpdate(insertQuery4);
                         }
                     }
                 if(x==1){
-                    NewUser1.infoMessage(" x Cancelled Successfully!", "Alert");
+                    NewUser1.infoMessage("Successfull!", "Alert");
                     
                 }
                 
-                if(a==1){
-                    NewUser1.infoMessage(" z Cancelled Successfully!", "Alert");
-                    
-                }
+//                if(a==1){
+//                    NewUser1.infoMessage(" z Cancelled Successfully!", "Alert");
+//                    
+//                }
                     
                 }
 
