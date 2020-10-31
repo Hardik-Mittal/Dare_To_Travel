@@ -266,7 +266,7 @@ public class Client {
         }        
     }
     
-    public String StationInfo(String table)
+    /*public String StationInfo(String table)
     {
         String mess="Station#"+table+"#server";
         msg=mess;
@@ -340,5 +340,5 @@ public class Client {
         {
             return perm;
         }
-    }
+    }*/
 }
