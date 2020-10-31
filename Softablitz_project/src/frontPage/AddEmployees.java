@@ -5,12 +5,9 @@
  */
 package frontPage;
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import static java.awt.image.ImageObserver.HEIGHT;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -155,6 +152,16 @@ public class AddEmployees extends javax.swing.JInternalFrame {
         String phNo = phno.getText();
         String Desg = desg.getText();
         
+        String pattern = "([#])";
+          Pattern r = Pattern.compile(pattern);
+          
+          Matcher m = r.matcher(fName+lName+phNo+Desg);
+          
+          if(m.find())
+          {
+              JOptionPane.showMessageDialog(null, "Any field must not contain '#' in it", "Saving Failed!", HEIGHT);
+              return;
+          }
          
         if (fName.equals("")) {
             JOptionPane.showMessageDialog(null, "First Name Field Empty!!");
@@ -169,30 +176,28 @@ public class AddEmployees extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Designation Field Empty!!");
         }
         else{
+            
             try{
-                Connection con = null;
-                Class.forName("com.mysql.jdbc.Driver");
-
-                String databaseUrl = "jdbc:mysql://localhost:3307/daretotravel";
-                try {
-                  con = (Connection) DriverManager.getConnection(databaseUrl, "root","anand1234");
-                } catch (SQLException ex) {
-                    Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                String insertQuery = "insert into emp_details values(null,'"+fName+"','"+lName+"','"+phNo+"','"+Desg+"')";
-
-                Statement stat = (Statement) con.createStatement();
-                int x = stat.executeUpdate(insertQuery);
-                System.out.print(x);
-
-                if(x==1){
-                    Registration.infoMessage("Added Successfully!", "Alert");
-                }
-
+            Client c = new Client();
+            Client.main(null);
+            
+            String permission = new String();
+            
+            permission=c.EmpAdd(fName,lName,phNo,Desg);
+            
+            if(permission.equals("true"))
+            {
+                Registration.infoMessage("Added Successfully!", "Alert");
             }
-            catch(ClassNotFoundException | SQLException e){
-                System.out.println(e);
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Error while Adding Data", "Employee Adding Failed!", HEIGHT);
             }
+            
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            
         }
     }//GEN-LAST:event_SaveActionPerformed
 

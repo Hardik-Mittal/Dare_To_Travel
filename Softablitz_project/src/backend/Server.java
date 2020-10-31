@@ -285,6 +285,87 @@ class ClientHandler implements Runnable
                     }
                 }
                 
+                /*else if(action.equals("TrainDetAdd"))
+                {
+                    String train_no = st.nextToken();
+                    String train_name = st.nextToken();
+        
+                    String train_source = st.nextToken();
+                    String train_dest = st.nextToken();
+                    String train_route = st.nextToken();
+                    
+                    String departTime = st.nextToken();
+                    String status = st.nextToken();
+                    
+                    String ac_II_S = st.nextToken();
+                    String ac_II_P = st.nextToken();
+        
+                    String sleeper_S = st.nextToken();
+                    String sleeper_P = st.nextToken();
+      
+                    String permission = "false#"+sender;
+                    
+                    try{
+                        
+                        String insertQuery = "insert into train_details values(null,'"+train_no+"','"+train_name+"','"+train_source+"','"+train_dest+"','"+train_route+"','"+departTime+"','"+status+"','"+ac_II_S+"','"+ac_II_P+"','"+sleeper_S+"','"+sleeper_P+"',null,'"+ac_II_S+"', '"+sleeper_S+"')";
+                        
+                        Statement stat = (Statement) MyConnection.getConnection().createStatement();
+                        
+                        int x = stat.executeUpdate(insertQuery); 
+                       
+                        //If data is stored successfully, then we get 1
+                        if(x==1)
+                        {
+                            permission="true#"+sender;
+                        }
+                        else
+                        {
+                            permission="false#"+sender;
+                        }
+                                              
+                        sc.confirmation(permission);
+                        
+                    }catch(Exception e)
+                    {
+                        System.out.println("Can't reach DataBase.");
+                    }
+                }*/
+                
+                else if(action.equals("EmpAdd"))
+                {
+                    String fName = st.nextToken();
+                    String lName = st.nextToken();
+                    String contact = st.nextToken();
+                    String desg = st.nextToken();
+                    
+                    String permission = "false#"+sender;
+                    
+                    try{
+                        
+                        String insertQuery = "insert into emp_details values(null,'"+fName+"','"+lName+"','"+contact+"','"+desg+"')";
+                        
+                        Statement stat = (Statement) MyConnection.getConnection().createStatement();
+                        
+                        int x = stat.executeUpdate(insertQuery); 
+                       
+                        //If data is stored successfully, then we get 1
+                        if(x==1)
+                        {
+                            permission="true#"+sender;
+                        }
+                        else
+                        {
+                            permission="false#"+sender;
+                        }
+                                              
+                        sc.confirmation(permission);
+                        
+                    }catch(Exception e)
+                    {
+                        System.out.println("Can't reach DataBase.");
+                    }
+                }
+                
                 /*else if(action.equals("Station"))
                 {
                     

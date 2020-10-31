@@ -40,9 +40,9 @@ public class AdminLogin extends javax.swing.JFrame {
         adminuserTF = new javax.swing.JTextField();
         adminpassPF = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        AdminLoginBT = new javax.swing.JButton();
+        CancelBT = new javax.swing.JButton();
+        UserLoginBT = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,30 +91,30 @@ public class AdminLogin extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("COCOGOOSE ", 1, 36)); // NOI18N
         jLabel1.setText("Admin Login");
 
-        jButton1.setFont(new java.awt.Font("COCOGOOSE ", 0, 12)); // NOI18N
-        jButton1.setText("Login");
-        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        AdminLoginBT.setFont(new java.awt.Font("COCOGOOSE ", 0, 12)); // NOI18N
+        AdminLoginBT.setText("Login");
+        AdminLoginBT.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        AdminLoginBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                AdminLoginBTActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("COCOGOOSE ", 0, 12)); // NOI18N
-        jButton2.setText("Cancel");
-        jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        CancelBT.setFont(new java.awt.Font("COCOGOOSE ", 0, 12)); // NOI18N
+        CancelBT.setText("Cancel");
+        CancelBT.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CancelBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                CancelBTActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("COCOGOOSE ", 0, 18)); // NOI18N
-        jButton3.setText("User Login");
-        jButton3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        UserLoginBT.setFont(new java.awt.Font("COCOGOOSE ", 0, 18)); // NOI18N
+        UserLoginBT.setText("User Login");
+        UserLoginBT.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        UserLoginBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                UserLoginBTActionPerformed(evt);
             }
         });
 
@@ -128,11 +128,11 @@ public class AdminLogin extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(AdminLoginBT, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(90, 90, 90)
-                .addComponent(jButton3)
+                .addComponent(UserLoginBT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CancelBT, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
             .addGroup(layout.createSequentialGroup()
                 .addGap(119, 119, 119)
@@ -148,9 +148,9 @@ public class AdminLogin extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(AdminLoginBT, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CancelBT, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UserLoginBT))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -158,7 +158,7 @@ public class AdminLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void AdminLoginBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminLoginBTActionPerformed
         // TODO add your handling code here:
 
         //Storing data input by user into variables
@@ -207,19 +207,19 @@ public class AdminLogin extends javax.swing.JFrame {
               e.printStackTrace();
           }
             
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_AdminLoginBTActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void CancelBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelBTActionPerformed
         // TODO add your handling code here:
         System.exit(0);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_CancelBTActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void UserLoginBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserLoginBTActionPerformed
         // TODO add your handling code here:
         dispose();
         Login ul = new Login();
         ul.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_UserLoginBTActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,11 +259,11 @@ public class AdminLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AdminLoginBT;
+    private javax.swing.JButton CancelBT;
+    private javax.swing.JButton UserLoginBT;
     private javax.swing.JPasswordField adminpassPF;
     private javax.swing.JTextField adminuserTF;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

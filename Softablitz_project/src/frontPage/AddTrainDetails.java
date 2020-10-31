@@ -5,16 +5,19 @@
  */
 package frontPage;
 
+import java.sql.DriverManager;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
-import java.sql.DriverManager;
+import java.awt.HeadlessException;
+import static java.awt.image.ImageObserver.HEIGHT;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -48,8 +51,8 @@ public class AddTrainDetails extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         t_name = new javax.swing.JTextField();
         t_no = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        saveBT = new javax.swing.JButton();
+        resetBT = new javax.swing.JButton();
         t_dest = new javax.swing.JComboBox<>();
         t_source = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
@@ -101,23 +104,23 @@ public class AddTrainDetails extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Save");
-        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        saveBT.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        saveBT.setText("Save");
+        saveBT.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        saveBT.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        saveBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                saveBTActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setText("Reset");
-        jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        resetBT.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        resetBT.setText("Reset");
+        resetBT.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        resetBT.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        resetBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                resetBTActionPerformed(evt);
             }
         });
 
@@ -205,7 +208,7 @@ public class AddTrainDetails extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel10)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(resetBT, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jLabel7)
@@ -222,7 +225,7 @@ public class AddTrainDetails extends javax.swing.JInternalFrame {
                                 .addGap(61, 61, 61)))
                         .addGap(0, 25, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(saveBT, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -270,8 +273,8 @@ public class AddTrainDetails extends javax.swing.JInternalFrame {
                             .addComponent(jLabel12))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1))
+                            .addComponent(resetBT)
+                            .addComponent(saveBT))
                         .addGap(42, 42, 42))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel7)
@@ -305,7 +308,7 @@ public class AddTrainDetails extends javax.swing.JInternalFrame {
         t_name.setText("");
     }
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void saveBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBTActionPerformed
         // TODO add your handling code here:
         
         String train_name = t_name.getText();
@@ -321,6 +324,16 @@ public class AddTrainDetails extends javax.swing.JInternalFrame {
         String departTime = t_time.getText();
         String status = (String) t_status.getSelectedItem();
         
+        /*String pattern = "([#])";
+          Pattern r = Pattern.compile(pattern);
+          
+          Matcher m = r.matcher(train_name+train_no+train_source+train_dest+train_route+ac_II_S+ac_II_P+sleeper_S+sleeper_P+departTime+status);
+          
+          if(m.find())
+          {
+              JOptionPane.showMessageDialog(null, "Any field must not contain '#' in it", "Saving Failed!", HEIGHT);
+              return;
+          }*/
         
         if (train_name.equals("")) {
             JOptionPane.showMessageDialog(null, "Name Field Empty!!");
@@ -347,6 +360,29 @@ public class AddTrainDetails extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Seats and Price Fields cannot be Empty!!");
         }
         else{
+            
+            /*try{
+            Client c = new Client();
+            Client.main(null);
+            
+            String permission = new String();
+            
+            permission=c.TrainDetAdd(train_no,train_name,train_source,train_dest,train_route,departTime,status,ac_II_S,ac_II_P,sleeper_S,sleeper_P);
+            
+            if(permission.equals("true"))
+            {
+                Registration.infoMessage("Added Successfully!", "Alert");
+                clearFields();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Error while Adding Train Details Data", "Train Details Adding Failed!", HEIGHT);
+            }
+            
+            }catch(HeadlessException | IOException e){
+                e.printStackTrace();
+            }*/
+            
             try{
                 Connection con = null;
                 Class.forName("com.mysql.jdbc.Driver");
@@ -377,14 +413,14 @@ public class AddTrainDetails extends javax.swing.JInternalFrame {
                 System.out.println(e);
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_saveBTActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void resetBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBTActionPerformed
         // TODO add your handling code here:
         t_no.setText("");
         t_name.setText("");
     
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_resetBTActionPerformed
 
     private void t_statusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_statusActionPerformed
         // TODO add your handling code here:
@@ -396,8 +432,6 @@ public class AddTrainDetails extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -411,6 +445,8 @@ public class AddTrainDetails extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton resetBT;
+    private javax.swing.JButton saveBT;
     private javax.swing.JComboBox<String> t_Route;
     private javax.swing.JTextField t_ac2P;
     private javax.swing.JTextField t_ac2S;
